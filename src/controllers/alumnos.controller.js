@@ -17,8 +17,28 @@ const getAlumnoByDni = (req, res)=>{
 }
 
 
+const updateAlumno = (req, res)=>{
+    const alumnosData = req.body
+   
+    const alumnoExiste = alumnos.find(alumno => alumno.dni ==alumnosData.dni)
+
+    if(!alumnoExiste){
+        alumnosData.habilitado = true
+      if  (alumnosData.celiaco == 'undefined') { alumnosData.celiaco = false}
+        alumnos.push(alumnosData)
+
+        res.status(201).json({ mensaje: `El alumno con nro dni ${alumnosData.dni} fue creado correctamente`})
+        }else{
+            res.status(400).json({mensaje: `El alumno con nro dni ${alumnosData.dni} ya existe en el sistema`})
+        }
+
+        
+}
+
+
 
 module.exports = {
     getAllAlumnos,
-    getAlumnoByDni 
+    getAlumnoByDni,
+    updateAlumno
  }
