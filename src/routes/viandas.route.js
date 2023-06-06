@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.get('/', viandasController.getAllViandas)
 router.get('/:codigo', viandasController.getViandasByCodigo)
-/*router.post('/', alumnosController.createAlumno)
-router.put('/:dni', alumnosController.updateAlumno )*/
+router.post('/', viandasController.createVianda)
+router.put('/:codigo', viandasController.updateVianda )
 
 module.exports = { router}

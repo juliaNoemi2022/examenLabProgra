@@ -44,10 +44,10 @@ const createAlumno = (req, res)=>{
         
         
        if( !/^\d{8}$/.test(alumnosData.dni)){
-        res.status(400).json({mensaje: `El dni ${alumnosData.dni} es incorrecto, debe poseer 8 digitos`})
+        res.status(400).json({mensaje: `El dni ${alumnosData.dni} es incorrecto, debe poseer 8 digitos`}) // Encontré que se podía validar así, pero no se si esta bien
        }
 
-       if (alumnos.edad < 17  && alumnosData.edad > 99) {
+       if (alumnosData.edad < 17  && alumnosData.edad > 99) {
         return res.status(400).json({ error: 'La edad debe ser mayor a 18 y menor a 99 años.' });
       }
         alumnos.push(alumnosData)
