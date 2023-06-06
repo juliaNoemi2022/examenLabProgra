@@ -8,7 +8,7 @@ const router = express.Router()
 router.get('/',alumnosController.getAllAlumnos )
 router.get('/:dni', alumnosController.getAlumnoByDni)
 router.delete('/:dni',alumnosController.deleteAlumnoByDni) 
-router.post('/', alumnosController.updateAlumno)
+router.post('/', alumnosController.createAlumno)
 router.put('/:dni', alumnosController.updateAlumno )
 
 module.exports = { router}

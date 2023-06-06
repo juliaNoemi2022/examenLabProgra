@@ -34,7 +34,7 @@ const deleteAlumnoByDni= ( req , res)=>{
 }
 
 
-const updateAlumno = (req, res)=>{
+const createAlumno = (req, res)=>{
     const alumnosData = req.body
    
     const alumnoExiste = alumnos.find(alumno => alumno.dni ==alumnosData.dni)
@@ -60,16 +60,34 @@ const updateAlumno = (req, res)=>{
         
 }
 
-const createAlumno =()=> {
+const updateAlumno = (req, res)=>{
+    const dni = req.params.dni  
+    const alumnosData = req.body 
+    const indice = alumnos.findIndex(alumno => alumno.dni == dni)
+    if ( indice >= 0 ) {
+        alumnos[indice].habilitado = alumnosData.habilitado
+        alumnos[indice].celiaco = alumnosData.celiaco
+        alumnos[indice.edad] = alumnosData.edad
+        
+        res.status(201).json({"alumno": alumnos[indice]})
+    }
+    else {
+        res.status(404).
+        json(
+            {
+                resultado: "La operación de modicar no pudo ser realizada",
+                mensaje: `El alumno con dni ${dni} no fue encontrado`
+            }
+        )
+    }
 
 }
-
 
 
 module.exports = {
     getAllAlumnos,
     getAlumnoByDni,
     deleteAlumnoByDni,
-    updateAlumno, 
-    createAlumno
+    createAlumno,
+    updateAlumno
  }
