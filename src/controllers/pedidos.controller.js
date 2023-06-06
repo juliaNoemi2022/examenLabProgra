@@ -14,20 +14,38 @@ const getPedidosById= (req, res)=>{
     }
   
 }
+const deletePedidoById= (res, req) =>{
+    const id= req.params.id
+    const indice = pedidos.findIndex( p => p.id = id)
+    if(indice ==-1){
+        res.status(400).json({mensaje: `ID ${id}incorrecto`})
+    }else{
+        const pedido = pedidos[indice]
+        const borrado = pedidos.splice(indice,1)
+        pedido.stock = pedidos.stock +1;
 
+        res.status(201).json({mensaje: `El pedido con ID ${id} fue eliminado`,
+                        pedido : pedido
+    })
+    }
+    }
+   
+        
+   
 
 const createPedido = (req, res) =>{
-    const datos = req.body
-    const fecha = new Date().toISOString().slice(0, 10)
-   
-      
-  res.status(201).json (datos)
-
+    const nuevoPedido = req.body
+    const dniAlumno= require.params.dni
+    
+    const fechaActual = new Date().toISOString().slice(0, 10)
+    pedidos.push(nuevoPedido)
+    res.status(201).json(nuevoPedido)
 }
 
 
 module.exports = {
     getAllPedidos,
     getPedidosById,
-    createPedido
+    createPedido,
+    deletePedidoById
  }
