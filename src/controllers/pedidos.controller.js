@@ -8,15 +8,20 @@ const getPedidosById= (req, res)=>{
     const id = req.params.id
     const resultado = pedidos.find( pedido=> pedido.id == id)
     if(resultado){
-      res.status(200).json(resultado).status(200)  
+      res.status(200).json(resultado)
     }else{
-        res.status(404).json({mensaje:`La vianda con codigo  ${codigo} no fue encontrada `}).status(404)
+        res.status(404).json({mensaje:`La vianda con codigo  ${codigo} no fue encontrada `})
     }
   
 }
 
 
 const createPedido = (req, res) =>{
+    const datos = req.body
+    const fecha = new Date().toISOString().slice(0, 10)
+   
+      
+  res.status(201).json (datos)
 
 }
 
